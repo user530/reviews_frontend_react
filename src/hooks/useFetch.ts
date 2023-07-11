@@ -14,10 +14,14 @@ const useFetch = <T extends StrapiObject>(url: string) => {
             try {
                 const res: Response = await fetch(url);
                 const json: StrapiResponse = await res.json();
+                let dataArray: T[] = [];
 
-                const data = json.data.map((item: StrapiObject) => item as T)
+                if (json.data instanceof Array)
+                    dataArray = json.data.map((item: StrapiObject) => item as T);
+                else
+                    dataArray = [json.data as T];
 
-                setData(data);
+                setData(dataArray);
                 setLoading(false);
             } catch (error) {
                 setError(error);

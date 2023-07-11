@@ -12,10 +12,13 @@ const Homepage = () => {
     if (error)
         return <p>Error...</p>;
 
-    return <div>
-        {data.map((review: Review) => (
-            <ReviewCard key={review.id} {...review} />))}
-    </div>
+    return (
+        <main className='page-main'>
+            <div className="container">
+                {data.map((review: Review) => (
+                    <ReviewCard key={review.id} {...review} />))}
+            </div>
+        </main>)
 };
 
 export default Homepage;
